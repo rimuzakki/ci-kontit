@@ -17,6 +17,8 @@ class Anggota extends CI_Controller {
 											'Ilmu Komunikasi' => 'Ilmu Komunikasi');
 
 		$this->load->model('Anggota_m');
+		// load lib form validation
+		$this->load->library('form_validation');
 	}
 
 	function index() {
@@ -61,6 +63,23 @@ class Anggota extends CI_Controller {
 	function delete($id) {
 		if($this->Anggota_m->delete_by_id($id)) {
 			redirect('anggota');
+		}
+	}
+
+	function check() {
+		$this->form_validation->set_rules('id', 'ID', 'trim');
+		$this->form_validation->set_rules('nim', 'NIM', 'trim|required');
+		$this->form_validation->set_rules('nama', 'Nama Anggota', 'trim|required');
+		$this->form_validation->set_rules('progdi', 'Progdi', 'trim|required');
+
+		$this->form_validation->set_message('required', 'Data {field} harus diisi.');
+		$this->form_validation->set_error_delimiters('<div style="color: red;">', '</div></br>');
+
+		if ($this->form_validation->run()==true) {
+			$this->save($this->input->post('is_update', true));
+		} else {
+			$this->data['is_update'] = $this->input->post('is_update', true);
+			$this->load->view('anggota_form_v', $this->data);
 		}
 	}
 	

@@ -54,5 +54,10 @@
 			}
 			return $rowBuku;
 		}
+
+		// fungsti hitung jml record
+		function jml_buku() {
+			return $this->db->count_all('buku');
+		}
 	}
 ?>

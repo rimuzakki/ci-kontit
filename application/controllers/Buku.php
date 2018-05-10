@@ -20,11 +20,24 @@ class Buku extends CI_Controller {
 		$this->load->model('Buku_m');
 		// load lib form validation
 		$this->load->library('form_validation');
+
+		// load lib pagination
+		$this->load->library('pagination');
 	}
 
 	function index() {
+		$config = array();
+		$config["base_url"] = base_url() . "buku/index";
+		$config["total rows"] = $this->Buku_m->jml_Buku();
+		$config["per_page"] = 5;
+		$config["uri_segment"] = 3;
+
+		$this->pagination->initialize($config);
+		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$this_.data["links"] = $this->pagination->create->create_links();
+
 		// $this->add_new();
-		$this->data['query'] = $this->Buku_m->get_records();
+		$this->data['query'] = $this->Buku_m->get_records(null, null, $config["per_page"], $page);
 		$this->load->view('buku_v', $this->data);
 		// $this->load->view('welcome_message');
 	}
@@ -74,10 +87,10 @@ class Buku extends CI_Controller {
 		$this->form_validation->set_rules('kategori', 'Kategori', 'trim|required');
 
 		$this->form_validation->set_message('required', 'Data {field} harus diisi.');
-		$this->form_validation->set_error_delimeters('<div style="color: red;">', '</div></br>');
+		$this->form_validation->set_error_delimiters('<div style="color: red;">', '</div></br>');
 
-		if $this->form_validation->run()==true {
-			$this-save($this->input->post('is_update', true));
+		if ($this->form_validation->run()==true) {
+			$this->save($this->input->post('is_update', true));
 		} else {
 			$this->data['is_update'] = $this->input->post('is_update', true);
 			$this->load->view('buku_form_v', $this->data);

@@ -10,17 +10,22 @@
 		$row['kategori'] = '';
 	}
 
-	echo form_open('buku/save/'.$is_update);
+	// echo form_open('buku/save/'.$is_update);
 
-	echo form_hidden('id',$row['id_buku']);
+	// echo form_hidden('id',$row['id_buku']);
 
-	echo "Judul : ".form_input('judul',$row['judul'],"size='50' maxlength='100'");
+	echo validation_errors();
+	echo form_open('buku/check');
+	echo form_hidden('id', set_value('id', $row['id_buku']));
+	echo form_hidden('is_update', $is_update);
+
+	echo "Judul : ".form_input('judul', set_value('judul', $row['judul']),"size='50' maxlength='100'");
 	echo "<br><br>";
 
-	echo "Pengarang : ".form_input('pengarang',$row['pengarang'],"size='50' maxlength='150'");
+	echo "Pengarang : ".form_input('pengarang', set_value('pengarang', $row['pengarang']),"size='50' maxlength='150'");
 	echo "<br><br>";
 
-	echo "Kategori : ".form_dropdown('kategori', $opt_kategori,$row['kategori']);
+	echo "Kategori : ".form_dropdown('kategori', $opt_kategori, set_value('kategori', $row['kategori']));
 	echo "<br><br>";
 
 	echo form_submit('btn_simpan', 'Simpan');

@@ -10,6 +10,8 @@
 			$this->load->model('anggota_m');
 			$this->load->model('buku_m');
 			$this->load->model('pinjam_m');	
+			// load lib form validation
+			$this->load->library('form_validation');
 		}
 		public function index()
 		{
@@ -26,6 +28,24 @@
 
 			if($this->pinjam_m->insert($data))
 				redirect('perpus');
+		}
+
+		function check() 
+		{
+			$this->form_validation->set_rules('id_buku', 'ID Buku', 'trim');
+			$this->form_validation->set_rules('id_anggota', 'ID Anggota', 'trim');
+			$this->form_validation->set_rules('tgl_pinjam', 'Tanggal Pinjam', 'trim|required');
+			$this->form_validation->set_rules('tgl_kembali', 'Tanggal Kembali', 'trim|required');
+
+			$this->form_validation->set_message('required', 'Data {field} harus diisi.');
+			$this->form_validation->set_error_delimiters('<div style="color: red;">', '</div></br>');
+
+			if ($this->form_validation->run()==true) {
+				$this->save($this->input->post('is_update', true));
+			} else {
+				$this->data['is_update'] = $this->input->post('is_update', true);
+				$this->load->view('pinjam_v', $this->data);
+			}
 		}
 	}
 ?>
