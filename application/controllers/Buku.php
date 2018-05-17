@@ -25,21 +25,21 @@ class Buku extends CI_Controller {
 		$this->load->library('pagination');
 	}
 
-	function index() {
+	public function index() {
+		// pagination
 		$config = array();
 		$config["base_url"] = base_url() . "buku/index";
-		$config["total rows"] = $this->Buku_m->jml_Buku();
+		$config["total_rows"] = $this->Buku_m->jml_buku();
 		$config["per_page"] = 5;
 		$config["uri_segment"] = 3;
 
 		$this->pagination->initialize($config);
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-		$this_.data["links"] = $this->pagination->create->create_links();
+		$this->data["links"] = $this->pagination->create_links();
 
 		// $this->add_new();
 		$this->data['query'] = $this->Buku_m->get_records(null, null, $config["per_page"], $page);
 		$this->load->view('buku_v', $this->data);
-		// $this->load->view('welcome_message');
 	}
 
 	function add_new() {

@@ -17,7 +17,7 @@
 				$this->db->order_by($order);
 
 			if($limit !='')
-				$this->db->limit($limit. $offset);
+				$this->db->limit($limit, $offset);
 
 			$query = $this->db->get();
 
@@ -57,7 +57,7 @@
 
 		// fungsti hitung jml record
 		function jml_buku() {
-			return $this->db->count_all('buku');
+			return $this->db->count_all('mst_buku');
 		}
 	}
 ?>
