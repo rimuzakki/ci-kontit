@@ -31,3 +31,6 @@
 		}
 		?>
 	</table>
+	<p><?php echo $links; ?></p>
+	<br>
+	<a href="<?php  echo base_url();?>">Kembali</a>

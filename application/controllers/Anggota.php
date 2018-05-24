@@ -19,13 +19,26 @@ class Anggota extends CI_Controller {
 		$this->load->model('Anggota_m');
 		// load lib form validation
 		$this->load->library('form_validation');
+		// load lib pagination
+		$this->load->library('pagination');
 	}
 
 	function index() {
+
+		// pagination
+		$config = array();
+		$config["base_url"] = base_url() . "anggota/index";
+		$config["total_rows"] = $this->Anggota_m->jml_anggota();
+		$config["per_page"] = 5;
+		$config["uri_segment"] = 3;
+
+		$this->pagination->initialize($config);
+		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$this->data["links"] = $this->pagination->create_links();
+
 		// $this->add_new();
-		$this->data['query'] = $this->Anggota_m->get_records();
+		$this->data['query'] = $this->Anggota_m->get_records(null, null, $config["per_page"], $page);
 		$this->load->view('anggota_v', $this->data);
-		// $this->load->view('welcome_message');
 	}
 
 	function add_new() {

@@ -54,5 +54,10 @@
 			}
 			return $rowAnggota;
 		}
+
+		// fungsti hitung jml record
+		function jml_anggota() {
+			return $this->db->count_all('mst_anggota');
+		}
 	}
 ?>
