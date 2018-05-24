@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2018 at 02:50 PM
+-- Generation Time: May 24, 2018 at 02:43 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `mst_anggota` (
   `nim` varchar(13) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `progdi` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mst_anggota`
@@ -40,7 +40,11 @@ CREATE TABLE IF NOT EXISTS `mst_anggota` (
 INSERT INTO `mst_anggota` (`id_anggota`, `nim`, `nama`, `progdi`) VALUES
 (1, 'G.231.15.0114', 'Rifqon Muzakki', 'Teknik Informatika'),
 (2, 'G.231.15.0129', 'Rahmat Nur', 'Sistem Informasi'),
-(3, 'G.231.15.0176', 'Qwety', 'Teknik Informatika');
+(3, 'G.231.15.0176', 'Qwety', 'Teknik Informatika'),
+(4, 'G.231.15.001', 'John doe', 'Teknik Informatika'),
+(5, 'G.231.15.002', 'Doe John', 'Sistem Informasi'),
+(6, 'G.231.15.003', 'Lorem Ipsum', 'Teknik Informatika'),
+(7, 'G.231.15.004', 'Ipsum Lorem', 'Teknik Informatika');
 
 -- --------------------------------------------------------
 
@@ -80,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `pinjam` (
   `id_buku` int(5) NOT NULL,
   `tgl_pinjam` date NOT NULL,
   `tgl_kembali` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pinjam`
@@ -92,7 +96,8 @@ INSERT INTO `pinjam` (`id_pinjam`, `id_anggota`, `id_buku`, `tgl_pinjam`, `tgl_k
 (3, 1, 1, '0000-00-00', '0000-00-00'),
 (4, 1, 1, '0000-00-00', '0000-00-00'),
 (5, 1, 1, '0000-00-00', '0000-00-00'),
-(6, 1, 1, '0000-00-00', '0000-00-00');
+(6, 1, 1, '0000-00-00', '0000-00-00'),
+(7, 1, 1, '2018-05-24', '2018-05-24');
 
 --
 -- Indexes for dumped tables
@@ -124,7 +129,7 @@ ALTER TABLE `pinjam`
 -- AUTO_INCREMENT for table `mst_anggota`
 --
 ALTER TABLE `mst_anggota`
-MODIFY `id_anggota` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id_anggota` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `mst_buku`
 --
@@ -134,7 +139,7 @@ MODIFY `id_buku` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `pinjam`
 --
 ALTER TABLE `pinjam`
-MODIFY `id_pinjam` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id_pinjam` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
