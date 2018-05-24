@@ -23,7 +23,7 @@ class Anggota extends CI_Controller {
 		$this->load->library('pagination');
 	}
 
-	function index() {
+	public function index() {
 
 		// pagination
 		$config = array();
