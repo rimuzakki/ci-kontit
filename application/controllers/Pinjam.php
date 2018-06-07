@@ -12,6 +12,11 @@
 			$this->load->model('pinjam_m');	
 			// load lib form validation
 			$this->load->library('form_validation');
+
+			// cek session
+			if(!is_logged_in()) {
+				redirect('perpus', 'refresh');
+			}
 		}
 		public function index()
 		{

@@ -23,6 +23,11 @@ class Buku extends CI_Controller {
 
 		// load lib pagination
 		$this->load->library('pagination');
+
+		// cek session
+		if(!is_logged_in()) {
+			redirect('perpus', 'refresh');
+		}
 	}
 
 	public function index() {
