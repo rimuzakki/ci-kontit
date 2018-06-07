@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2018 at 02:43 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Jun 07, 2018 at 09:14 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `perpus`
@@ -26,12 +26,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `mst_anggota`
 --
 
-CREATE TABLE IF NOT EXISTS `mst_anggota` (
-`id_anggota` int(5) NOT NULL,
+CREATE TABLE `mst_anggota` (
+  `id_anggota` int(5) NOT NULL,
   `nim` varchar(13) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `progdi` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mst_anggota`
@@ -52,12 +52,12 @@ INSERT INTO `mst_anggota` (`id_anggota`, `nim`, `nama`, `progdi`) VALUES
 -- Table structure for table `mst_buku`
 --
 
-CREATE TABLE IF NOT EXISTS `mst_buku` (
-`id_buku` int(8) NOT NULL,
+CREATE TABLE `mst_buku` (
+  `id_buku` int(8) NOT NULL,
   `judul` varchar(100) NOT NULL,
   `pengarang` varchar(150) NOT NULL,
   `kategori` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mst_buku`
@@ -78,13 +78,13 @@ INSERT INTO `mst_buku` (`id_buku`, `judul`, `pengarang`, `kategori`) VALUES
 -- Table structure for table `pinjam`
 --
 
-CREATE TABLE IF NOT EXISTS `pinjam` (
-`id_pinjam` int(5) NOT NULL,
+CREATE TABLE `pinjam` (
+  `id_pinjam` int(5) NOT NULL,
   `id_anggota` int(5) NOT NULL,
   `id_buku` int(5) NOT NULL,
   `tgl_pinjam` date NOT NULL,
   `tgl_kembali` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pinjam`
@@ -99,6 +99,25 @@ INSERT INTO `pinjam` (`id_pinjam`, `id_anggota`, `id_buku`, `tgl_pinjam`, `tgl_k
 (6, 1, 1, '0000-00-00', '0000-00-00'),
 (7, 1, 1, '2018-05-24', '2018-05-24');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` tinyint(4) NOT NULL,
+  `username` varchar(10) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+
 --
 -- Indexes for dumped tables
 --
@@ -107,19 +126,25 @@ INSERT INTO `pinjam` (`id_pinjam`, `id_anggota`, `id_buku`, `tgl_pinjam`, `tgl_k
 -- Indexes for table `mst_anggota`
 --
 ALTER TABLE `mst_anggota`
- ADD PRIMARY KEY (`id_anggota`);
+  ADD PRIMARY KEY (`id_anggota`);
 
 --
 -- Indexes for table `mst_buku`
 --
 ALTER TABLE `mst_buku`
- ADD PRIMARY KEY (`id_buku`);
+  ADD PRIMARY KEY (`id_buku`);
 
 --
 -- Indexes for table `pinjam`
 --
 ALTER TABLE `pinjam`
- ADD PRIMARY KEY (`id_pinjam`);
+  ADD PRIMARY KEY (`id_pinjam`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -129,17 +154,22 @@ ALTER TABLE `pinjam`
 -- AUTO_INCREMENT for table `mst_anggota`
 --
 ALTER TABLE `mst_anggota`
-MODIFY `id_anggota` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_anggota` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `mst_buku`
 --
 ALTER TABLE `mst_buku`
-MODIFY `id_buku` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_buku` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `pinjam`
 --
 ALTER TABLE `pinjam`
-MODIFY `id_pinjam` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_pinjam` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
